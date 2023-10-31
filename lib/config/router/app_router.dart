@@ -1,6 +1,7 @@
 
 
 import 'package:go_router/go_router.dart';
+import 'package:indumentariastock/presentation/screens/createItem.dart';
 import 'package:indumentariastock/presentation/screens/home_screen.dart';
 
 final appRouter = GoRouter(
@@ -19,6 +20,14 @@ final appRouter = GoRouter(
           routes: [
 
           ]
+      ),
+
+      GoRoute(
+          path: '/createItem',
+        name: CreateItemScreen.name,
+        builder: (context, state) {
+          return CreateItemScreen();
+        },
       ),
 
 

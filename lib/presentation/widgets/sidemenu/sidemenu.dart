@@ -44,20 +44,20 @@ class _SideMenuState extends State<SideMenu> {
         children: [
           Padding(
             padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
-            child: const Text("Opciones Secundarias"),
+            child: const Text("Productos"),
           ),
           ...appMenuItems
-              .sublist(0,3)
+              .sublist(0,2)
               .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title))),
           const Padding(padding: EdgeInsets.fromLTRB(28, 16,16,10),
             child: Divider(),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
-            child: const Text("Mas Opciones"),
+            child: const Text("Empleados"),
           ),
           ...appMenuItems
-              .sublist(3)
+              .sublist(2)
               .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title))),
 
         ]

@@ -15,20 +15,20 @@ class MenuItem {
 
 final appMenuItems = <MenuItem>[
   MenuItem(
-      title: 'Botones',
-      subtitle: 'Botones Varios',
-      link: '/buttons',
-      icon: Icons.smart_button_outlined),
+      title: 'Crear un producto',
+      subtitle: 'Menu para agregar un producto',
+      link: '/createItem',
+      icon: Icons.add_box_rounded),
   MenuItem(
-      title: 'Tarjetas',
-      subtitle: 'Un contenedor estilizado',
-      link: '/cards',
-      icon: Icons.credit_card_outlined),
+      title: 'Crear una categoria',
+      subtitle: 'Menu para agregar una categoria',
+      link: '/',
+      icon: Icons.list_rounded),
   MenuItem(
-      title: 'Progress Indicator',
-      subtitle: 'Indicadores de progreso',
+      title: 'Ver empleados',
+      subtitle: 'Ver la cantidad de empleados',
       link: '/progress',
-      icon: Icons.refresh_rounded),
+      icon: Icons.account_circle),
   MenuItem(
       title: 'Animated Container',
       subtitle: 'Stateful Widget animated',
