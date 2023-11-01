@@ -15,12 +15,11 @@ class StockItem extends StatelessWidget {
       child: Container(
         height: 70,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              width: 2,
+              width: 1,
               color: Colors.black12,
             ),
-            color: itemColor
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
