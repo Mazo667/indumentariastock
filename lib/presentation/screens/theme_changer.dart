@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:indumentariastock/config/theme/app_theme.dart';
+import 'package:indumentariastock/presentation/blocs/theme/theme_bloc.dart';
 
 class ThemeChangerScreen extends StatelessWidget {
 
@@ -11,18 +14,19 @@ class ThemeChangerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //final bool isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
+    final bool isDarkMode = context.watch<ThemeBloc>().state.appTheme.isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("App Theme Changer"),
         actions: [
           IconButton(onPressed: () {
-            //ref.read(isDarkModeProvider.notifier).update((state) => !state);
-           // ref.read(themeNotifierProvider.notifier).toggleDarkMode();
+            var themeBloc = context.read<ThemeBloc>();
+            print('$isDarkMode');
+            themeBloc.add(ToggleDarkMode(isDarkMode: !isDarkMode));
           },
-            //  icon: Icon(isDarkMode ? Icons.light_mode_rounded : Icons.dark_mode)
-              icon: Icon( Icons.light_mode_rounded)
+            icon: Icon(isDarkMode ? Icons.light_mode_rounded : Icons.dark_mode)
+
           )
         ],
       ),
@@ -37,22 +41,27 @@ class _ThemeChangerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-  //  final List<Color> colors = ref.watch(colorListProvider);
-  //  final int selectecColor = ref.watch(themeNotifierProvider).selectedColor;
+    final int selectecColor = context.watch<ThemeBloc>().state.appTheme.selectedColor;
 
     return ListView.builder(
-      itemCount: colors.length,
+      itemCount: colorList.length,
       itemBuilder: (context, index) {
-        final Color color = colors[index];
+        final Color color = colorList[index];
         return RadioListTile(
-          title: Text('Este color',style: TextStyle(color: color)),
-          subtitle: Text('${color.value}'),
+          title: Row(
+            children: [
+              Text("Este color",style: TextStyle(color: color)),
+              const SizedBox(width: 5),
+              Icon(Icons.color_lens,color: color)
+            ],
+          ),
+          hoverColor: color,
           value: index,
           groupValue: selectecColor,
           onChanged: (value) {
-            ref.read(themeNotifierProvider.notifier).changeColorIndex(index);
-            //ref.read(selectedColorProvider.notifier).state = index;
-          },);
+           final themeBloc = context.read<ThemeBloc>();
+           themeBloc.add(ChangeColor(selectedColor: value!));
+          });
       },
     );
   }

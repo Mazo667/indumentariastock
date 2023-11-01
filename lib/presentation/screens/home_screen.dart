@@ -17,16 +17,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        title: const Text('Flutter material 3'),
-      ),
-      body: const _HomeView(),
-      drawer: SideMenu(scaffoldKey: scaffoldKey),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => _saveItem(context),
-      ),
+    key: scaffoldKey,
+    appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      title: const Text('Flutter material 3'),
+    ),
+    body: const _HomeView(),
+    drawer: SideMenu(scaffoldKey: scaffoldKey),
+    floatingActionButton: FloatingActionButton(
+      child: const Icon(Icons.add),
+      onPressed: () => _saveItem(context),
+    ),
     );
   }
 

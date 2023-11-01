@@ -1,20 +1,16 @@
 
 
 import 'package:go_router/go_router.dart';
-import 'package:indumentariastock/presentation/screens/createItem.dart';
-import 'package:indumentariastock/presentation/screens/home_screen.dart';
+import 'package:indumentariastock/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
-    initialLocation: '/home/0',
+    initialLocation: '/home',
     routes: [
 
       GoRoute(
-          path: '/home/:page',
+          path: '/home',
           name: HomeScreen.name,
           builder: (context, state) {
-
-            final pageIndex = int.parse( state.pathParameters['page'] ?? '0' );
-
             return HomeScreen();
           },
           routes: [
@@ -30,11 +26,19 @@ final appRouter = GoRouter(
         },
       ),
 
+      GoRoute(
+        path: '/theme_changer',
+        name: ThemeChangerScreen.name,
+        builder: (context, state) {
+          return ThemeChangerScreen();
+        },
+      ),
+
 
 
       GoRoute(
         path: '/',
-        redirect: ( _ , __ ) => '/home/0',
+        redirect: ( _ , __ ) => '/home',
       ),
 
     ]

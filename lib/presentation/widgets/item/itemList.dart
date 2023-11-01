@@ -9,13 +9,18 @@ class StockItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final itemColor = Theme.of(context).colorScheme.primary.withOpacity(0.05);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
       child: Container(
-        height: 60,
+        height: 70,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: const Color.fromRGBO(10, 10, 10, 0.04)
+            border: Border.all(
+              width: 2,
+              color: Colors.black12,
+            ),
+            color: itemColor
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -26,6 +31,8 @@ class StockItem extends StatelessWidget {
             const SizedBox(width: 15),
             //nombre y precio
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(item.nombre,style: textTheme.titleLarge),
                 Text('Precio:  ${PricesFormat.number(item.precio,2)}',style: textTheme.titleMedium),
@@ -36,6 +43,7 @@ class StockItem extends StatelessWidget {
 
             IconButton(onPressed: () => _removeItem(context), icon: const Icon(Icons.edit,size: 30)),
             IconButton(onPressed: () => _removeItem(context), icon: const Icon(Icons.delete,size: 30)),
+            const SizedBox(width: 5),
           ],
 
         ),

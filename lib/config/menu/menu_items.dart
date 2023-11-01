@@ -27,41 +27,21 @@ final appMenuItems = <MenuItem>[
   MenuItem(
       title: 'Ver empleados',
       subtitle: 'Ver la cantidad de empleados',
-      link: '/progress',
+      link: '/employees',
       icon: Icons.account_circle),
   MenuItem(
-      title: 'Animated Container',
-      subtitle: 'Stateful Widget animated',
+      title: 'Reporte ventas',
+      subtitle: 'Grafico que representa la cantidad de ventas',
       link: '/animated',
-      icon: Icons.check_box_outline_blank_outlined),
+      icon: Icons.bar_chart),
   MenuItem(
-      title: 'App Tutorial',
-      subtitle: 'App tutorial',
-      link: '/app_tutorial',
-      icon: Icons.add_chart),
+      title: 'Imprimir listado de productos',
+      subtitle: 'Imprime o descarga en PDF todos los productos',
+      link: '/print',
+      icon: Icons.print),
   MenuItem(
-      title: 'Infinite Scroll & Pull',
-      subtitle: 'Listas infinitas y pull to refresh',
-      link: '/infinite_scroll',
-      icon: Icons.list_alt_outlined),
-  MenuItem(
-      title: 'SnackBar y Dialogos',
-      subtitle: 'Snack Bar y dialogos simples',
-      link: '/snackbar',
-      icon: Icons.message_outlined),
-  MenuItem(
-      title: 'UI Controls',
-      subtitle: 'UI controles',
-      link: '/ui_controls',
-      icon: Icons.keyboard_option_key),
-  MenuItem(
-      title: 'Counter RiverPod',
-      subtitle: 'Un contador de RiverPod',
-      link: '/counter',
-      icon: Icons.plus_one),
-  MenuItem(
-      title: 'Theme Changer',
-      subtitle: 'Cambiar el modo oscuro a claro o viceversa ',
+      title: 'Colores',
+      subtitle: 'Cambiar los colores de la app',
       link: '/theme_changer',
-      icon: Icons.dark_mode_rounded),
+      icon: Icons.screenshot_monitor_outlined),
 ];

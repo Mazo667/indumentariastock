@@ -21,6 +21,7 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
 
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
+    final textTheme = Theme.of(context).textTheme;
     /*
      if(Platform.isAndroid){
       print('Android $hasNotch');
@@ -31,6 +32,7 @@ class _SideMenuState extends State<SideMenu> {
 
 
     return NavigationDrawer(
+      indicatorColor: Colors.transparent,
         onDestinationSelected: (value) {
           setState(() {
             navDrawerIndex = value;
@@ -44,7 +46,7 @@ class _SideMenuState extends State<SideMenu> {
         children: [
           Padding(
             padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
-            child: const Text("Productos"),
+            child: Text("Productos",style: textTheme.titleMedium),
           ),
           ...appMenuItems
               .sublist(0,2)
@@ -54,12 +56,29 @@ class _SideMenuState extends State<SideMenu> {
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
-            child: const Text("Empleados"),
+            child:  Text("Empleados",style: textTheme.titleMedium),
           ),
           ...appMenuItems
-              .sublist(2)
+              .sublist(2,3)
               .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title))),
-
+          const Padding(padding: EdgeInsets.fromLTRB(28, 16,16,10),
+          child: Divider()),
+          Padding(
+            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
+            child:  Text("Reporte",style: textTheme.titleMedium),
+          ),
+          ...appMenuItems
+              .sublist(3,5)
+              .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title))),
+          const Padding(padding: EdgeInsets.fromLTRB(28, 16,16,10),
+              child: Divider()),
+          Padding(
+            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
+            child:  Text("Configuracion",style: textTheme.titleMedium),
+          ),
+          ...appMenuItems
+          .sublist(5)
+          .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title)))
         ]
     );
   }
