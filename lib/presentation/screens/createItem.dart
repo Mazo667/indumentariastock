@@ -122,7 +122,7 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
   }
 
   _saveItem(BuildContext context,String name, double price) {
-    var item = ItemStock(nombre: name, icon:  const Icon(Icons.account_box_rounded,size: 40), precio: price, cantidad: 0, categoria: 'Pantalones');
+    var item = ItemStock(nombre: name,imagePath: '' , precio: price, cantidad: 0, categoria: 'Pantalones', id: '');
     var itemBloc = context.read<ItemBloc>();
     itemBloc.add(ItemAdd(item));
     context.pop();

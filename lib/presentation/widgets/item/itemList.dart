@@ -25,7 +25,7 @@ class StockItem extends StatelessWidget {
           children: [
             const SizedBox(width: 10),
 
-            Center(child: item.icon),
+            Center(child: Image.network(item.imagePath)),
             const SizedBox(width: 15),
             //nombre y precio
             Column(

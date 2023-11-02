@@ -1,20 +1,35 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indumentariastock/domain/entities/item.dart';
 
+import '../../../domain/repositories/ItemsRepository.dart';
+
 part 'item_event.dart';
 part 'item_state.dart';
 
 class ItemBloc extends Bloc<ItemEvent, ItemState> {
-  ItemBloc(ItemState initialState) : super(initialState) {
+  final ItemsRepository repository;
 
-    on<ItemAdd>((event, emit){
-      state.items.add(event.item);
-      emit(ItemState(state.items));
+  ItemBloc(ItemState initialState, this.repository) : super(initialState) {
+
+    on<ItemAdd>((event, emit) async {
+      try{
+        await repository.addItem(event.item);
+        final updatedItems = await repository.getAllItems();
+        emit(ItemState(updatedItems));
+      } catch (e){
+        print(e.toString());
+      }
+
     });
 
-    on<ItemRemove>((event, emit) {
-     state.items.remove(event.item);
-     emit(ItemState(state.items));
+    on<ItemRemove>((event, emit) async {
+      try{
+        await repository.removeItem(event.item);
+        final updatedItems = await repository.getAllItems();
+        emit(ItemState(updatedItems));
+      } catch (e){
+        print(e.toString());
+      }
     });
 
 
