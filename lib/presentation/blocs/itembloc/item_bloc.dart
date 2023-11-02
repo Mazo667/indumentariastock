@@ -5,7 +5,7 @@ part 'item_event.dart';
 part 'item_state.dart';
 
 class ItemBloc extends Bloc<ItemEvent, ItemState> {
-  ItemBloc() : super(ItemInitial([])) {
+  ItemBloc(ItemState initialState) : super(initialState) {
 
     on<ItemAdd>((event, emit){
       state.items.add(event.item);
@@ -13,7 +13,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
     });
 
     on<ItemRemove>((event, emit) {
-     state.items.remove(event.index);
+     state.items.remove(event.item);
      emit(ItemState(state.items));
     });
 

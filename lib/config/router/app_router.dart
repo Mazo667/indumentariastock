@@ -9,9 +9,9 @@ final appRouter = GoRouter(
 
       GoRoute(
           path: '/home',
-          name: HomeScreen.name,
+          name: AllItemsScreen.name,
           builder: (context, state) {
-            return HomeScreen();
+            return AllItemsScreen();
           },
           routes: [
 

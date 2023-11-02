@@ -3,9 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indumentariastock/config/router/app_router.dart';
 import 'package:indumentariastock/presentation/blocs/itembloc/item_bloc.dart';
 import 'package:indumentariastock/presentation/blocs/theme/theme_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
-void main() {
+
+void main() async {
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(BlocProvider(
     create: (context) => ThemeBloc(),
     child: const MyApp(),
@@ -23,7 +31,7 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return BlocProvider(
-          create: (context) => ItemBloc(),
+          create: (context) => ItemBloc(ItemState([])),
           child: MaterialApp.router(
               debugShowCheckedModeBanner: false,
               routerConfig: appRouter,

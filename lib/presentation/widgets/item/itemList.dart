@@ -9,7 +9,6 @@ class StockItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final itemColor = Theme.of(context).colorScheme.primary.withOpacity(0.05);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
       child: Container(
@@ -36,6 +35,13 @@ class StockItem extends StatelessWidget {
                 Text(item.nombre,style: textTheme.titleLarge),
                 Text('Precio:  ${PricesFormat.number(item.precio,2)}',style: textTheme.titleMedium),
               ],
+            ),
+            //Categoria
+            Column(
+                children: [
+                  Text('Categoria: ${item.categoria}'),
+                  Text('Cantidad: ${item.cantidad}')
+                ]
             ),
             const Spacer(),
 

@@ -8,11 +8,27 @@ import 'package:indumentariastock/presentation/blocs/itembloc/item_bloc.dart';
 import 'package:indumentariastock/presentation/widgets/item/itemList.dart';
 import 'package:indumentariastock/presentation/widgets/sidemenu/sidemenu.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class AllItemsScreen extends StatefulWidget {
+  const AllItemsScreen({super.key});
 
   static const name = 'home-screen';
 
+  @override
+  State<AllItemsScreen> createState() => _AllItemsScreenState();
+}
+
+class _AllItemsScreenState extends State<AllItemsScreen> {
+  List<ItemStock> _items = [];
+  @override
+  void initState() {
+    super.initState();
+    //_getLastItems();
+  }
+  /*
+  void _getLastItems() async {
+    var lastItems = await
+  }
+   */
   @override
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -32,7 +48,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   _saveItem(BuildContext context) {
-    var item = ItemStock(nombre: 'nombre', icon:  const Icon(Icons.account_box_rounded,size: 40), precio: 2000.0);
+    var item = ItemStock(nombre: 'nombre', icon:  const Icon(Icons.account_box_rounded,size: 40), precio: 2000.0, cantidad: 0, categoria: 'Pantalones');
     var itemBloc = context.read<ItemBloc>();
     itemBloc.add(ItemAdd(item));
   }

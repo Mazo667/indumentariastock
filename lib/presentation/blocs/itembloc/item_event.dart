@@ -12,7 +12,7 @@ class ItemAdd extends ItemEvent{
 }
 
 class ItemRemove extends ItemEvent{
-  final int index;
+  final ItemStock item;
 
-  const ItemRemove({required this.index});
+  ItemRemove(this.item);
 }
