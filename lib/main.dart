@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indumentariastock/config/router/app_router.dart';
+import 'package:indumentariastock/domain/repositories/ItemsRepository.dart';
 import 'package:indumentariastock/presentation/blocs/itembloc/item_bloc.dart';
 import 'package:indumentariastock/presentation/blocs/theme/theme_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+
+import 'infrastructure/repositories/ItemRepositoryImpl.dart';
+
 
 
 
 void main() async {
-
+  /*
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+   */
 
   runApp(BlocProvider(
     create: (context) => ThemeBloc(),

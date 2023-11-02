@@ -2,34 +2,53 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:indumentariastock/domain/entities/item.dart';
-import 'package:indumentariastock/presentation/blocs/itembloc/item_bloc.dart';
 
-class CreateItemScreen extends StatefulWidget {
-   CreateItemScreen({super.key});
+class ModifyItemScreen extends StatefulWidget {
+  final ItemStock item;
 
-  static const name = 'create_item_screen';
+  ModifyItemScreen({super.key, required this.item});
+
+  static const name = 'modify-item-screen';
+
 
   @override
-  State<CreateItemScreen> createState() => _CreateItemScreenState();
+  State<ModifyItemScreen> createState() => _ModifyItemScreenState();
 }
 
-class _CreateItemScreenState extends State<CreateItemScreen> {
+class _ModifyItemScreenState extends State<ModifyItemScreen> {
   TextEditingController itemNameController = TextEditingController();
   TextEditingController itemPriceController = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    // Inicializa los controladores con los valores del objeto Item
+    itemNameController.text = widget.item.nombre;
+    itemPriceController.text = widget.item.precio.toString();
+  }
+
+  @override
+  void dispose() {
+    // Asegúrate de liberar los recursos de los controladores al salir de la pantalla
+    itemNameController.dispose();
+    itemPriceController.dispose();
+    super.dispose();
+  }
+
 
   List<XFile>? _mediaFileList;
   XFile? pickedFile;
   final ImagePicker _picker = ImagePicker();
 
-   // Función de validación que verifica si ambos campos de entrada no están vacíos
+  // Función de validación que verifica si ambos campos de entrada no están vacíos
   bool _validateFields() {
-      if (itemNameController.text.isEmpty || itemPriceController.text.isEmpty) {
-        return false; // La validación falla si algún campo está vacío
-      }
+    if (itemNameController.text.isEmpty || itemPriceController.text.isEmpty) {
+      return false; // La validación falla si algún campo está vacío
+    }
     return true; // Todos los campos están llenos
   }
 
@@ -41,9 +60,9 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
     final textTheme = Theme.of(context).textTheme;
+
 
     return Scaffold(
       appBar: AppBar(),
@@ -52,8 +71,8 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
           width: size.width * 0.60,
           height: size.height * 0.95,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color.fromRGBO(10, 10, 10, 0.02)
+              borderRadius: BorderRadius.circular(20),
+              color: const Color.fromRGBO(10, 10, 10, 0.02)
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
@@ -90,26 +109,26 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                 const SizedBox(height: 20),
                 pickedFile != null  ? Center(
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10),
                         child: Image.file(File(pickedFile!.path),height: 150,width: 150,fit: BoxFit.fill,))) : const SizedBox(),
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     FilledButton.icon(
-                        onPressed: () {
-                          if(_validateFields()){
-                            final price = double.tryParse(itemPriceController.text);
-                            _saveItem(context, itemNameController.text, price!);
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                      onPressed: () {
+                        if(_validateFields()){
+                          final price = double.tryParse(itemPriceController.text);
+                          _saveItem(context, itemNameController.text, price!);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
                                   duration: Duration(seconds: 3),
-                                    content: Text("Por favor complete todos los campos")));
-                          }
-                        },
-                        icon: const Icon(Icons.playlist_add_check),
-                        label: const Text("Finalizar Carga del Producto",style: TextStyle(fontSize: 20)),
+                                  content: Text("Por favor complete todos los campos")));
+                        }
+                      },
+                      icon: const Icon(Icons.playlist_add_check),
+                      label: const Text("Finalizar Carga del Producto",style: TextStyle(fontSize: 20)),
                     ),
                   ],
                 )
@@ -123,17 +142,17 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
 
   _saveItem(BuildContext context,String name, double price) {
     var item = ItemStock(nombre: name,imagePath: '' , precio: price, id: '');
-    var itemBloc = context.read<ItemBloc>();
-    itemBloc.add(ItemAdd(item));
+    //var itemBloc = context.read<ItemBloc>();
+    //itemBloc.add(ItemAdd(item));
     context.pop();
   }
 
   Future<void> _onImageButtonPressed(ImageSource source, {
-        required BuildContext context,}) async {
+    required BuildContext context,}) async {
 
 
     // Validar si es una imagen o video (en este caso, se asume imagen)
-   // isVideo = false;
+    // isVideo = false;
 
     // Llamar al selector de imágenes de la galería o cámara
     pickedFile = await _picker.pickImage(
@@ -156,6 +175,5 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
       });
     }
   }
-
 
 }

@@ -49,35 +49,35 @@ class _SideMenuState extends State<SideMenu> {
             child: Text("Productos",style: textTheme.titleMedium),
           ),
           ...appMenuItems
-              .sublist(0,2)
+              .sublist(0,3)
               .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title))),
-          const Padding(padding: EdgeInsets.fromLTRB(28, 16,16,10),
+          const Padding(padding: EdgeInsets.fromLTRB(28, 8,16,10),
             child: Divider(),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
+            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 10,16,10),
             child:  Text("Empleados",style: textTheme.titleMedium),
           ),
           ...appMenuItems
-              .sublist(2,3)
+              .sublist(3,4)
               .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title))),
-          const Padding(padding: EdgeInsets.fromLTRB(28, 16,16,10),
+          const Padding(padding: EdgeInsets.fromLTRB(28, 8,16,10),
           child: Divider()),
           Padding(
-            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
+            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 10,16,10),
             child:  Text("Reporte",style: textTheme.titleMedium),
           ),
           ...appMenuItems
-              .sublist(3,5)
+              .sublist(4,6)
               .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title))),
-          const Padding(padding: EdgeInsets.fromLTRB(28, 16,16,10),
+          const Padding(padding: EdgeInsets.fromLTRB(28, 8,16,10),
               child: Divider()),
           Padding(
-            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 20,16,10),
+            padding: EdgeInsets.fromLTRB(28,hasNotch ? 0 : 10,16,10),
             child:  Text("Configuracion",style: textTheme.titleMedium),
           ),
           ...appMenuItems
-          .sublist(5)
+          .sublist(6)
           .map((item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title)))
         ]
     );

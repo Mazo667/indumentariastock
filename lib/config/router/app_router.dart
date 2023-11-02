@@ -1,6 +1,5 @@
-
-
 import 'package:go_router/go_router.dart';
+import 'package:indumentariastock/domain/entities/item.dart';
 import 'package:indumentariastock/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
@@ -9,15 +8,15 @@ final appRouter = GoRouter(
 
       GoRoute(
           path: '/home',
-          name: AllItemsScreen.name,
+          name: CategoryItemScreen.name,
           builder: (context, state) {
-            return AllItemsScreen();
+            return CategoryItemScreen();
           },
           routes: [
 
           ]
       ),
-
+      //Creador de Items
       GoRoute(
           path: '/createItem',
         name: CreateItemScreen.name,
@@ -25,9 +24,28 @@ final appRouter = GoRouter(
           return CreateItemScreen();
         },
       ),
-
+      //Lista de todos los items
       GoRoute(
-        path: '/theme_changer',
+        path: '/all-items',
+        name: AllItemsScreen.name,
+        builder: (context, state) {
+          return AllItemsScreen();
+        },
+        routes: [
+          GoRoute(
+            path: 'modify-item:id',
+            name: ModifyItemScreen.name,
+            builder: (context, state) {
+              final ItemStock item = state.extra as ItemStock;
+              return ModifyItemScreen(item: item);
+            },
+
+          ),
+        ]
+      ),
+      //Cambiar el tema
+      GoRoute(
+        path: '/theme-changer',
         name: ThemeChangerScreen.name,
         builder: (context, state) {
           return ThemeChangerScreen();

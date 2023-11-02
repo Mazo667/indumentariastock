@@ -24,10 +24,12 @@ class _AllItemsScreenState extends State<AllItemsScreen> {
     super.initState();
     //_getLastItems();
   }
-
+/*
   void _getAllItems() async {
     var lastItems = await
   }
+ */
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +38,9 @@ class _AllItemsScreenState extends State<AllItemsScreen> {
     key: scaffoldKey,
     appBar: AppBar(
       backgroundColor: Colors.transparent,
-      title: const Text('Flutter material 3'),
+      title:  Text('Productos: ${_items.length}'),
     ),
     body: const _HomeView(),
-    drawer: SideMenu(scaffoldKey: scaffoldKey),
     floatingActionButton: FloatingActionButton(
       child: const Icon(Icons.add),
       onPressed: () => _saveItem(context),
@@ -48,7 +49,7 @@ class _AllItemsScreenState extends State<AllItemsScreen> {
   }
 
   _saveItem(BuildContext context) {
-    var item = ItemStock(nombre: 'nombre', imagePath: '', precio: 2000.0, cantidad: 0, categoria: 'Pantalones', id: '');
+    var item = ItemStock(nombre: 'nombre', imagePath: '', precio: 2000.0, id: '');
     var itemBloc = context.read<ItemBloc>();
     itemBloc.add(ItemAdd(item));
   }
@@ -61,6 +62,12 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ItemBloc,ItemState>(
         builder: (context, itemState) {
+          final List<ItemStock> items = [
+            ItemStock(id: '21', nombre: 'Remera', imagePath: 'assets/images/producto-sin-imagen.png', precio: 14500),
+            ItemStock(id: '22', nombre: 'Chomba', imagePath: 'assets/images/producto-sin-imagen.png', precio: 22350),
+            ItemStock(id: '12', nombre: 'Jean', imagePath: 'assets/images/producto-sin-imagen.png', precio: 44750),
+            ItemStock(id: '12', nombre: 'Zapatilla', imagePath: 'assets/images/producto-sin-imagen.png', precio: 62200),
+          ];
          var emptyListWidget = Center(child: Column(
            mainAxisAlignment: MainAxisAlignment.center,
            children: [
@@ -71,7 +78,8 @@ class _HomeView extends StatelessWidget {
            ],
          ));
 
-         return itemState.items.isEmpty ? emptyListWidget : MyItemList(items: itemState.items);
+         //return itemState.items.isEmpty ? emptyListWidget : MyItemList(items: itemState.items);
+         return items.isEmpty? emptyListWidget : MyItemList(items: items);
         });
   }
 }

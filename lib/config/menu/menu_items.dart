@@ -20,9 +20,14 @@ final appMenuItems = <MenuItem>[
       link: '/createItem',
       icon: Icons.add_box_rounded),
   MenuItem(
-      title: 'Crear una categoria',
-      subtitle: 'Menu para agregar una categoria',
+      title: 'Categorias',
+      subtitle: 'Menu para ver y crear categorias',
       link: '/',
+      icon: Icons.playlist_add),
+  MenuItem(
+      title: 'Ver todos los productos',
+      subtitle: 'Listado de todos los productos',
+      link: '/all-items',
       icon: Icons.list_rounded),
   MenuItem(
       title: 'Ver empleados',
@@ -42,6 +47,6 @@ final appMenuItems = <MenuItem>[
   MenuItem(
       title: 'Colores',
       subtitle: 'Cambiar los colores de la app',
-      link: '/theme_changer',
+      link: '/theme-changer',
       icon: Icons.screenshot_monitor_outlined),
 ];

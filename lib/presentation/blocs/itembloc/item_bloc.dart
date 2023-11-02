@@ -7,29 +7,16 @@ part 'item_event.dart';
 part 'item_state.dart';
 
 class ItemBloc extends Bloc<ItemEvent, ItemState> {
-  final ItemsRepository repository;
 
-  ItemBloc(ItemState initialState, this.repository) : super(initialState) {
+  ItemBloc(ItemState initialState) : super(initialState) {
 
-    on<ItemAdd>((event, emit) async {
-      try{
-        await repository.addItem(event.item);
-        final updatedItems = await repository.getAllItems();
-        emit(ItemState(updatedItems));
-      } catch (e){
-        print(e.toString());
-      }
+    on<ItemAdd>((event, emit)  {
+
 
     });
 
-    on<ItemRemove>((event, emit) async {
-      try{
-        await repository.removeItem(event.item);
-        final updatedItems = await repository.getAllItems();
-        emit(ItemState(updatedItems));
-      } catch (e){
-        print(e.toString());
-      }
+    on<ItemRemove>((event, emit) {
+
     });
 
 
